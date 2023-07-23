@@ -1,1 +1,1 @@
-python3 -W "ignore" cli_REPL.py
+python3 -W "ignore" main_cli.py

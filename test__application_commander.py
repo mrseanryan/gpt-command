@@ -1,8 +1,8 @@
 from config__application_commander import expert_templates
-import main
+import core
 
 def test():
-    chain = main.create_chain(expert_templates)
+    chain = core.create_chain(expert_templates)
 
     user_test_prompts = [
         "Please make a new spreadsheet",
@@ -21,5 +21,5 @@ def test():
         print("---")
         print(f">> {user_prompt}")
         # should route to the right 'expert' chain!
-        rsp = main.execute_prompt(user_prompt, chain)
+        rsp = core.execute_prompt(user_prompt, chain)
         print(rsp)

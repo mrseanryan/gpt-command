@@ -6,6 +6,8 @@ from langchain.chains import ConversationChain
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 
+import config
+
 def create_chain(expert_templates):
 
     llm = OpenAI()
@@ -36,7 +38,7 @@ def create_chain(expert_templates):
         router_chain=router_chain,
         destination_chains=destination_chains,
         default_chain=default_chain,
-        verbose=False, # set the True to debug
+        verbose=config.is_debug
     )
     return chain
 
