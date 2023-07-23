@@ -25,14 +25,25 @@ So, another application can use the web server to send in natural language promp
 
 The other application can then execute the given command.
 
+## Commands
+
+Commands with prompts are configured to suit your application.
+
+Example - see [config__application_commander.py](config__application_commander.py).
+
 ### Example Output
 
 ```
 How can I help you with your project? >Create a new paper
 ---
->> Create a new paper
+>> I need a new text document
 
-{"bot_name": "Document Creator Bot", "command_name": "Create Document", "document_type": "Paper"}
+{
+    "bot_name": "Document Creator Bot",
+    "command_name": "Create Document",
+    "message_to_user": "Creating a new Text Document",
+    "document_type": "Text"
+}
 
 How can I help you with your project? >I don't need this anymore
 ---
@@ -41,22 +52,35 @@ How can I help you with your project? >I don't need this anymore
 {
     "bot_name": "Document Deleter Bot",
     "command_name": "Delete current document"
+    "message_to_user": "Are you sure you want to delete the current document?"
 }
-
-How can I help you with your project? >I need to do some calculations
----
->> I need to do some calculations
- Sure, what kind of calculations?
 
 How can I help you with your project? >A budget, like in Excel
 ---
 >> A budget, like in Excel
 
 {
-"bot_name": "Document Creator Bot",
-"command_name": "Create Document",
-"document_type": "Spreadsheet"
+    "bot_name": "Document Creator Bot",
+    "command_name": "Create Document",
+    "message_to_user": "Creating a new spreadsheet document...",
+    "document_type": "Spreadsheet"
 }
+```
+
+# Non-Command user prompts
+
+User prompts that are not related to any of the known Commands, are sent directly to the LLM.
+
+Examples:
+
+```
+>> Who won the battle of Agincourt, and why was it fought?
+{"general_response": " The battle of Agincourt was fought in 1415 during the Hundred Years' War between the English and French. The English army, led by King Henry V, was victorious in the battle. The French army was significantly larger, but the English were able to win thanks to their superior tactics. "}
+```
+
+```
+>> What is my favourite color?
+{"general_response": " I'm sorry, I don't know. "}
 ```
 
 ## Set up
