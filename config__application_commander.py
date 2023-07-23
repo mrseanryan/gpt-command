@@ -25,6 +25,7 @@ When you don't know the answer to a question, set command_name to be None.
 The output format is JSON with these fields:
 bot_name: <<bot name>>
 command_name: Create Document
+message_to_user: <<message to user>>
 document_type: The type of document
 
 Here is a question:
@@ -44,6 +45,7 @@ When you don't know the answer to a question, set command_name to be None.
 The output format is JSON with these fields:
 bot_name: <<bot name>>
 command_name: Check Performance
+message_to_user: <<message to user>>
 document_types: The types of document to check. Defaults to all.
 
 Here is a question:
@@ -64,6 +66,7 @@ When you don't know the answer to a question, set command_name to be None.
 The output format is JSON with these fields:
 bot_name: <<bot name>>
 command_name: Delete current document
+message_to_user: <<message to user>>
 
 Here is a question:
 {input}
