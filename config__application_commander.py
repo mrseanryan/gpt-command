@@ -20,15 +20,18 @@ You can handle questions like these:
 
 You can issue commands to the application, to create documents.
 
-In your answer, identify yourself.
-When you don't know the answer to a question you admit that you don't know.
+When you don't know the answer to a question, set command_name to be None.
 
-The output is a command. The output format is JSON with these fields:
+The output format is JSON with these fields:
+bot_name: <<bot name>>
 command_name: Create Document
 document_type: The type of document
 
 Here is a question:
-{input}"""
+{input}
+
+IMPORTANT: only output valid JSON
+"""
 
 check_performance__expert_template = """You are Performance Checker Bot, a bot that knows how to check the application for possible performance issues.
 You are great at answering questions about application performance.
@@ -36,15 +39,18 @@ You are great at answering questions about application performance.
 You can handle questions like these:
 ```{PROMPT_EXAMPLES}```
 
-In your answer, identify yourself.
-When you don't know the answer to a question you admit that you don't know.
+When you don't know the answer to a question, set command_name to be None.
 
-The output is a command. The output format is JSON with these fields:
+The output format is JSON with these fields:
+bot_name: <<bot name>>
 command_name: Check Performance
 document_types: The types of document to check. Defaults to all.
 
 Here is a question:
-{input}"""
+{input}
+
+IMPORTANT: only output valid JSON
+"""
 
 doc_deletion__expert_template = """You are Document Deleter Bot, a bot that knows how to delete a document from the application.
 You can issue commands to the application, to delete the current document.
@@ -53,14 +59,17 @@ Before you issue the command, you must ask the user for confirmation.
 You can handle questions like these:
 ```{PROMPT_EXAMPLES}```
 
-In your answer, identify yourself.
-When you don't know the answer to a question you admit that you don't know.
+When you don't know the answer to a question, set command_name to be None.
 
-The output is a command. The output format is JSON with these fields:
+The output format is JSON with these fields:
+bot_name: <<bot name>>
 command_name: Delete current document
 
 Here is a question:
-{input}"""
+{input}
+
+IMPORTANT: only output valid JSON
+"""
 
 COMMANDS = [
     Command('create_doc', get_create_prompts(), create_doc__expert_template, "Good for answering questions about creating a document"),
