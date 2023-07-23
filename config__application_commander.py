@@ -28,6 +28,8 @@ command_name: Create Document
 message_to_user: <<message to user>>
 document_type: The type of document
 
+document_type MUST be one of {DOCUMENT_TYPES}
+
 Here is a question:
 {input}
 
@@ -46,7 +48,10 @@ The output format is JSON with these fields:
 bot_name: <<bot name>>
 command_name: Check Performance
 message_to_user: <<message to user>>
-document_types: The types of document to check. Defaults to all.
+document_types: An arry of the types of document to check. Defaults to all.
+
+The values of document_types MUST restricted to these valid values: {DOCUMENT_TYPES}, or else 'all'.
+If you are not sure which document types to check, then check all.
 
 Here is a question:
 {input}
@@ -87,5 +92,5 @@ for command in COMMANDS:
     expert_templates.append({
         "name": command.name,
         "description": command.description,
-        "expert_template": command.expert_template.replace("{PROMPT_EXAMPLES}", prompt_examples)
+        "expert_template": command.expert_template.replace("{PROMPT_EXAMPLES}", prompt_examples).replace("{DOCUMENT_TYPES}", ", ".join(DOCUMENT_TYPES))
     })
