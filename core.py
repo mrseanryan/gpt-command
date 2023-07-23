@@ -7,6 +7,7 @@ from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 
 import config
+import json_fixer
 
 def create_chain(expert_templates):
 
@@ -45,4 +46,5 @@ def create_chain(expert_templates):
 def execute_prompt(user_prompt, chain):
     # Routes to the right 'expert' chain
     # Falls back to the default chain, which means sending the plain user prompt to the LLM
-    return chain.run(user_prompt)
+    rsp = chain.run(user_prompt)
+    return json_fixer.force_to_json(rsp, "general_response")

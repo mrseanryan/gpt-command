@@ -56,7 +56,7 @@ If you are not sure which document types to check, then check all.
 Here is a question:
 {input}
 
-IMPORTANT: only output valid JSON
+IMPORTANT: only output valid JSON.
 """
 
 doc_deletion__expert_template = """You are Document Deleter Bot, a bot that knows how to delete a document from the application.
