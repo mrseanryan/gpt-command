@@ -1,0 +1,3 @@
+import test__application_commander
+
+test__application_commander.test()
