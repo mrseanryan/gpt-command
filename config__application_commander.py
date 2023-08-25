@@ -12,6 +12,8 @@ def get_performance_prompts(): return ["Check the performance of my project"]
 
 def get_delete_prompts(): return ["Delete the current document", "Destroy the current document", "Remove this document"]
 
+def get_describe_prompts(): return ["How can you help me", "What services do you provide"]
+
 create_doc__expert_template = """You are Document Creator Bot, a bot that knows how to create documents in the application.
 You are great at answering questions about documents and creating them.
 
@@ -79,10 +81,38 @@ Here is a question:
 IMPORTANT: only output valid JSON
 """
 
+# TODO xxx make this part dynamic 'The available services are'
+AVAILABLE_SERVICES = "Create Documents, Delete Documents, Check for Performance"
+
+describe__expert_template = """You are Services Describer Bot, a bot that knows how to answer questions about the available services.
+You are great at answering general questions about how the user can be helped.
+
+You can handle questions like these:
+```{PROMPT_EXAMPLES}```
+
+You can list the available commands (services).
+
+When you don't know the answer to a question, say that you do not understand, and list the available services.
+
+The available services are:
+```AVAILABLE_SERVICES```
+
+The output format is JSON with these fields:
+bot_name: <<bot name>>
+command_name: Describe
+message_to_user: <<message to user>>
+
+Here is a question:
+{input}
+
+IMPORTANT: only output valid JSON
+""".replace("AVAILABLE_SERVICES", AVAILABLE_SERVICES)
+
 COMMANDS = [
     Command('create_doc', get_create_prompts(), create_doc__expert_template, "Good for answering questions about creating a document"),
     Command('check_performance', get_performance_prompts(), check_performance__expert_template, "Good for answering questions about application performance"),
     Command('delete_doc', get_delete_prompts(), doc_deletion__expert_template, "Good for answering questions about deleting a document"),
+    Command('describe_bot', get_describe_prompts(), describe__expert_template, "Good for answering questions about available services and commands"),
 ]
 
 # Expert templates: each one is a chain that knows how to handle one type of prompt
